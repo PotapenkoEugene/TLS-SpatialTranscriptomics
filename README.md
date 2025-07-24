@@ -62,7 +62,7 @@ Tertiary Lymphoid Structures are critical immune hubs within tumors, and their p
 **Key repositories:** GEO (Gene Expression Omnibus), Zenodo, Human Tumor Atlas Network
 
 ### Expert annotated datasets:
-- **10.5281/zenodo.14620362**
+- **[Kidney (3) and Lung (5) Cancer with Tertiary Lymphoid Structures](https://zenodo.org/records/14620362)**
 
 ---
 
