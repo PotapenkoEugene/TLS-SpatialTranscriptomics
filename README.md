@@ -66,7 +66,7 @@ Tertiary Lymphoid Structures are critical immune hubs within tumors, and their p
 
 ### Unannotated datasets:
 
-- **[10x website]**:(https://www.10xgenomics.com/datasets?configure%5BhitsPerPage%5D=50&configure%5BmaxValuesPerFacet%5D=1000&refinementList%5Binstruments.name%5D%5B0%5D=Visium%20CytAssist&refinementList%5Bspecies%5D%5B0%5D=Human) - there are a lot of solid tumor samples, but usually 1 sample per disease. The link with the filters already
+- [10x website](https://www.10xgenomics.com/datasets?configure%5BhitsPerPage%5D=50&configure%5BmaxValuesPerFacet%5D=1000&refinementList%5Binstruments.name%5D%5B0%5D=Visium%20CytAssist&refinementList%5Bspecies%5D%5B0%5D=Human) - there are a lot of solid tumor samples, but usually 1 sample per disease. The link with the filters already
 ---
 
 ## Biology Basis
