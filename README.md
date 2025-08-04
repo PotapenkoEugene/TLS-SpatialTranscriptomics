@@ -109,11 +109,19 @@ Tertiary Lymphoid Structures (TLS) are ectopic lymphoid organs that form in non-
 
 ### 3. TLS Signature Scoring
 
-The **12-chemokine signature** typically includes:
+The **12-chemokine signature** includes:
 
-- **CCL2, CCL3, CCL4, CCL5, CCL8, CCL18, CCL19, CCL21**
-- **CXCL9, CXCL10, CXCL11, CXCL13**
+- **CCL2, CCL3, CCL4, CCL5, CCL8, CCL18, CCL19, CCL21, CXCL9, CXCL10, CXCL11 and CXCL13**
 
+[TLS signature associated with good prognosis in ovarian cancer](https://pmc.ncbi.nlm.nih.gov/articles/PMC9871364/)
+
+- **CETP, CCR7, SELL, LAMP3, CCL19, CXCL9, CXCL10, CXCL11, and CXCL13**
+
+[9gene set](https://pubmed.ncbi.nlm.nih.gov/31942071/)
+- **CD79B, CD1D, CCR6, LAT, SKAP1, CETP, EIF1AY, RBP5, and PTGDS**
+
+[hallmark genes](https://pubmed.ncbi.nlm.nih.gov/33568675/)
+- **CCL19, CCL21, CXCL13, CCR7, CXCR5, SELL, and LAMP3**
 ---
 
 ## Technical Aspects
