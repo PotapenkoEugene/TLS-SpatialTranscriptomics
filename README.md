@@ -143,3 +143,5 @@ The **12-chemokine signature** includes:
 # Tutorials
 ## 1. [Seurat Visium 10X](https://satijalab.org/seurat/articles/spatial_vignette#identification-of-spatially-variable-features)
 ## 2. [Paper with similar goals](https://www.nature.com/articles/s41467-024-52153-4?utm_source=chatgpt.com)
+## 3. [Another paper with THE SAME goal](https://pmc.ncbi.nlm.nih.gov/articles/PMC11011734)
+
