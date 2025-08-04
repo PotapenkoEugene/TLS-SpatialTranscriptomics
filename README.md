@@ -63,6 +63,7 @@ Tertiary Lymphoid Structures are critical immune hubs within tumors, and their p
 
 ### Expert annotated datasets:
 - **[Kidney (3) and Lung (5) Cancer with Tertiary Lymphoid Structures](https://zenodo.org/records/14620362)**
+- **[nasopharyngeal carcinoma](https://www.nature.com/articles/s41467-024-52153-4)**
 
 ### Unannotated datasets:
 
