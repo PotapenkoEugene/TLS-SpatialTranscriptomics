@@ -65,7 +65,7 @@ Tertiary Lymphoid Structures are critical immune hubs within tumors, and their p
 - **[Kidney (3) and Lung (5) Cancer with Tertiary Lymphoid Structures](https://zenodo.org/records/14620362)**
 - **[nasopharyngeal carcinoma](https://www.nature.com/articles/s41467-024-52153-4)**
 - **[renal cell cancer](https://www.cell.com/immunity/fulltext/S1074-7613(22)00081-4)**
-
+- **[primary liver cancer](https://www.science.org/doi/full/10.1126/sciadv.abg3750)**
 ### Unannotated datasets:
 
 - [10x website](https://www.10xgenomics.com/datasets?configure%5BhitsPerPage%5D=50&configure%5BmaxValuesPerFacet%5D=1000&refinementList%5Binstruments.name%5D%5B0%5D=Visium%20CytAssist&refinementList%5Bspecies%5D%5B0%5D=Human) - there are a lot of solid tumor samples, but usually 1 sample per disease. The link with the filters already
