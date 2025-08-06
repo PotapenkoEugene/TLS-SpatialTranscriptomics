@@ -53,7 +53,7 @@ Tertiary Lymphoid Structures are critical immune hubs within tumors, and their p
 9. **Score TLS-associated gene signatures** (12-chemokine signatures, **❓**) on per-spot basis
 10. **Visualize TLS-score per spot** (spatial heatmap) as overlay on tissue image
 11. **Train supervised model**: Based on datasets with "expert annotations" learn SVC for predicting TLS-positive spots from their gene expression profiles (probably using TLS-associated gene signature gene subset**❓**)
-12. **Deconvolution analysis**: Use deconvolution tools (Kassandra, **❓**) for estimating cellular composition of predicted TLS regions and proof the TLS nature of these regions by enrichment of B-cells, T-cells and dendritic cells (also High endothelial venules (HEVs)**❓**)
+12. **Deconvolution analysis**: Use deconvolution tools (Kassandra, SMART) for estimating cellular composition of predicted TLS regions and proof the TLS nature of these regions by enrichment of B-cells, T-cells and dendritic cells (also High endothelial venules (HEVs)**❓**)
 
 ---
 
