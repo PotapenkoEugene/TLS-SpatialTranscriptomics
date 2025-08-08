@@ -18,7 +18,6 @@ This repository provides a comprehensive bioinformatics pipeline for identifying
 - Kate Petrenko
 - Evgenii Potapenko
 - Veronika Samusik
-- Diana Sharysh
 
 ## Project Overview
 
@@ -110,6 +109,27 @@ Tertiary Lymphoid Structures (TLS) are ectopic lymphoid organs that form in non-
 #### Plasma cell markers:
 - **IGHG1**
 - **MZB1**
+
+
+Composition of TLSs and detection of markers from [Munoz-Erazo, 2020](https://pmc.ncbi.nlm.nih.gov/articles/PMC7264315/)
+| |Structure/Cell                      | Corresponding Marker                             |
+|------------------|------------------|--------------------------------------------------|
+| **Most common TLS content**        | |                                                  |
+| | High endothelial venules           | No specific marker, MECA-79                      |
+| | Dendritic cells                    | DC-LAMP                                          |
+| | B cells                            | CD20                                             |
+| | T cells                            | CD3                                              |
+| **Possible components of TLSs**    |                                                  |
+| | Germinal centers                   | Ki67                                             |
+| | Proliferating B cells              | Ki67                                             |
+| | T follicular helper cells          | CD4, CXCR5, CD40L, IL21, IL6                     |
+| **Other markers associated with TLSs** |                                              |
+| | Chemokines                         | CCL-2,3,4,5,8,18,19,21; CXCL-9,10,11,13          |
+| | Cytotoxic T cells                  | CD8                                              |
+| | T regulatory cells                 | FOXP3                                            |
+| | Endothelial cells                  | CD31                                             |
+| | Follicular DCs, mature B cells     | CD23                                             |
+
 
 ### 3. TLS Signature Scoring
 
