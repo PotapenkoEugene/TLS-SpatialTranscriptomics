@@ -1,5 +1,9 @@
 # Spatial TLS Detection
 
+# Abstract
+
+Tertiary lymphoid structures (TLS) are ectopic lymphoid aggregates that arise in non-lymphoid tissues during chronic inflammation, autoimmune disease, infection, and cancer. Resembling secondary lymphoid organs in organization, TLS are composed of distinct B- and T-cell zones, follicular dendritic cells, and specialized vasculature such as high endothelial venules. Unlike primary lymphoid tissues, TLS develop in response to local inflammatory cues, including persistent antigenic stimulation and cytokine signaling. In our work we tried several methods for detecting TLS using both H&E image and spatial gene expression data.
+
 ## 🔬 Overview
 
 This repository provides a comprehensive bioinformatics pipeline for identifying and characterizing Tertiary Lymphoid Structures (TLS) in tumor tissue using spatial transcriptomics. TLS are critical immune hubs that serve as strong predictors of favorable patient prognosis and immunotherapy response.
@@ -187,7 +191,46 @@ The **12-chemokine signature** includes:
 
 ---
 
+# Files:
 
+1. HEST_download.ipynb - download unnanotated datasets from HEST db
+2. Our_models.ipynb - all our models, gene signature analysis and
+3. STRIDE_deconv.ipynb - Deconvolution for validation using STRIDE
+4. SpaceScanner.ipynb - image processing with SpaceScanner that  failed
+5. TESLA_basic.ipynb - TESLA TLS detection
+6. TLS_VISIUM_process.ipynb - manual process of our dataset
+7. spagcn.ipynb - tried with spagcn - not suitable
+
+# Abstract
+
+Tertiary lymphoid structures (TLS) are ectopic lymphoid aggregates that arise in non-lymphoid tissues during chronic inflammation, autoimmune disease, infection, and cancer. Resembling secondary lymphoid organs in organization, TLS are composed of distinct B- and T-cell zones, follicular dendritic cells, and specialized vasculature such as high endothelial venules. Unlike primary lymphoid tissues, TLS develop in response to local inflammatory cues, including persistent antigenic stimulation and cytokine signaling. In our work we tried several methods for detecting TLS using both H&E image and gene expression data.
+
+
+
+## Tools 
+That tools taht we tried to use as a ready solutions or tried to adapt to our pipeline.
+### Assist methods for pathologists:
+
+#### [HookNet-TLS](https://github.com/DIAGNijmegen/pathology-hooknet-tls/tree/main)
+
+#### [ScribbleDom](https://github.com/1alnoman/ScribbleDom)
+
+### Deconvolution
+
+#### [STRIDE](https://github.com/DongqingSun96/STRIDE) 
+Spatial TRanscrIptomics DEconvolution by topic modeling (STRIDE), is a computational method to decompose cell types from spatial mixtures by leveraging topic profiles trained from single-cell transcriptomics. In our work we used them for deconvolution of sc-RNAseq data and visualising results in the form of a scatterpie plot. 
+
+### Image processing approach with celltype deconvolution filtering 
+
+#### [SpaceScanner](https://github.com/wanglabtongji/SpaceScanner/tree/main)
+
+### Spatial transcriptomic pretrained segmentation model 
+
+#### [RESEPT](https://github.com/OSU-BMBL/RESEPT)
+
+### Detection of TLS based on aggregated immune cell annotations
+
+#### [TESLA](https://github.com/jianhuupenn/TESLA)
 
 # Tutorials
 ## 1. [Seurat Visium 10X](https://satijalab.org/seurat/articles/spatial_vignette#identification-of-spatially-variable-features)
