@@ -27,32 +27,77 @@ Tertiary Lymphoid Structures are critical immune hubs within tumors, and their p
 
 1. Identify, download, and preprocess public 10x Visium spatial transcriptomics datasets of solid tumors (e.g., lung, kidney, breast cancer) from repositories like GEO and Zenodo. Perform quality control, normalization, and data structuring.
 
-2. Apply unsupervised clustering algorithms to identify spatially distinct tissue domains. Annotate clusters based on the expression of canonical marker genes for immune (e.g., PTPRC, MS4A1, CD3D) and stromal cells to locate potential lymphoid aggregates.
+2. Implement and score published TLS-associated gene signatures (e.g., 12-chemokine signature) on a per-spot basis. Visualize the resulting TLS scores as spatial heatmaps overlaid on the corresponding H&E tissue images.
 
-3. Implement and score published TLS-associated gene signatures (e.g., 12-chemokine signature) on a per-spot basis. Visualize the resulting TLS scores as spatial heatmaps overlaid on the corresponding H&E tissue images.
+3. Using datasets with expert annotations (e.g., Zenodo: 10.5281/zenodo.14620362 ), train and validate a supervised machine learning model (e.g., Support Vector Classifier) to predict TLS-positive spots from their gene expression profiles.
 
-4. Using datasets with expert annotations (e.g., Zenodo: 10.5281/zenodo.14620362 ), train and validate a supervised machine learning model (e.g., Support Vector Classifier) to predict TLS-positive spots from their gene expression profiles.
-
-5. Use computational deconvolution tools (e.g., Kassandra) to estimate the cellular composition of predicted TLS regions. Validate that these regions are enriched in B-cells, T-cells, and dendritic cells, confirming their biological identity as TLS.
+4. Use computational deconvolution tools (e.g., Kassandra) to estimate the cellular composition of predicted TLS regions. Validate that these regions are enriched in B-cells, T-cells, and dendritic cells, confirming their biological identity as TLS.
 
 ---
 
 # Project info 
 
-## Tasks detailed
+## Model Development Process
 
-1. **Find datasets** (GEO, Zenodo, **❓**)
-2. **Load datasets**
-3. **QC** (Quality Control)
-4. **Normalization**
-5. **Data structuring**
-6. **Clustering** (UMAP)
-7. **Annotation** (based on canonical immune markers: PTPRC, MS4A1, CD3D, **❓** and stromal cells markers)
-8. **Locate lymphoid aggregates** based on annotation
-9. **Score TLS-associated gene signatures** (12-chemokine signatures, **❓**) on per-spot basis
-10. **Visualize TLS-score per spot** (spatial heatmap) as overlay on tissue image
-11. **Train supervised model**: Based on datasets with "expert annotations" learn SVC for predicting TLS-positive spots from their gene expression profiles (probably using TLS-associated gene signature gene subset**❓**)
-12. **Deconvolution analysis**: Use deconvolution tools (Kassandra, SMART) for estimating cellular composition of predicted TLS regions and proof the TLS nature of these regions by enrichment of B-cells, T-cells and dendritic cells (also High endothelial venules (HEVs)**❓**)
+Given the limited number of **samples** available (n = 8), training a deep learning model entirely from scratch was not feasible.  
+We initially evaluated several **off-the-shelf pre-trained solutions** for TLS detection, but all yielded suboptimal results, failing to generalize to our dataset.
+
+---
+
+### Baseline: TLS Signature Analysis
+To establish a baseline, we performed **TLS signature scoring** using 18 published gene sets, ranging in size from **4 to ~2000 genes**.  
+While this approach achieved moderate performance, it was unable to reliably distinguish TLS from other immune cell aggregates, highlighting the need for a spatially resolved method.
+
+---
+
+### Step 1 – Gene Expression–Only Models
+We adopted a **spot-level classification approach**, leveraging the thousands of spots available per sample.  
+Using gene expression features alone, we trained three supervised machine learning models:
+
+- **Linear Regression** (baseline)
+- **Random Forest**
+- **Support Vector Machine (SVM)**
+
+The **SVM** outperformed other models in overall accuracy.  
+However, **recall** for TLS spots remained too low for practical use, indicating that many TLS regions were being missed.
+
+---
+
+### Step 2 – Image-Only Models
+To incorporate histological context, we fine-tuned a **ResNet** architecture on H&E images.  
+While this approach captured some morphological features, it exhibited a significant drop in **precision**, resulting in many false positives.
+
+To address the lack of contextual information, we modified the training pipeline to include **spatial context windows** around each spot.  
+This improved performance, but the extreme **class imbalance** (TLS spots ≈ 4% of all spots) continued to limit results.
+
+Attempts to artificially balance the dataset (e.g., oversampling TLS spots or undersampling non-TLS spots) degraded generalization.  
+We then implemented a **curriculum learning–style strategy**, starting with a more balanced dataset and **gradually reducing the TLS proportion** to match the true class distribution across epochs.  
+This yielded a modest improvement but was still insufficient.
+
+---
+
+### Step 3 – Multi-Modal Models
+We explored **multi-modal fusion** of gene expression and image features:
+
+- **Simple concatenation (early fusion)** did not improve results and, in some cases, degraded performance.
+- An **attention-based fusion architecture** enabled the model to dynamically weight gene expression and image features per sample.
+
+The **attention-based model** significantly outperformed all previous approaches.  
+Further fine-tuning of **feature extraction layers** and **fusion parameters** produced a notable increase in both recall and precision.
+
+---
+
+### Final Model
+The final architecture integrates:
+- **Gene expression features** (top 2000 highly variable genes)
+- **Image embeddings** from ResNet with context padding
+- **Attention-based modality fusion**
+- **Class imbalance mitigation** via curriculum-style sampling
+
+---
+
+Detailed implementation, training scripts, and evaluation metrics are available in this repository.
+
 
 ---
 
@@ -62,18 +107,6 @@ Tertiary Lymphoid Structures are critical immune hubs within tumors, and their p
 
 ### Expert annotated datasets:
 - **[Kidney (3) and Lung (5) Cancer with Tertiary Lymphoid Structures](https://zenodo.org/records/14620362)**
-- **[renal cell cancer](https://www.cell.com/immunity/fulltext/S1074-7613(22)00081-4)**
-- **[primary liver cancer](https://www.science.org/doi/full/10.1126/sciadv.abg3750)**
-
-#### Annotation is absent:
-- **[nasopharyngeal carcinoma](https://www.nature.com/articles/s41467-024-52153-4)**
-
-### Unannotated datasets:
-
-- [10x website](https://www.10xgenomics.com/datasets?configure%5BhitsPerPage%5D=50&configure%5BmaxValuesPerFacet%5D=1000&refinementList%5Binstruments.name%5D%5B0%5D=Visium%20CytAssist&refinementList%5Bspecies%5D%5B0%5D=Human) - there are a lot of solid tumor samples, but usually 1 sample per disease. The link with the filters already
-- [HPV-negative oral squamous cell carcinoma](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE208253)
-- [HEST-1k](https://github.com/mahmoodlab/hest) - Free access to HEST-1K, a dataset of 1,229 paired Spatial Transcriptomics samples with HE-stained whole-slide images where 49% of samples are done with Visium!!!
----
 
 ## Biology Basis
 
@@ -154,13 +187,6 @@ The **12-chemokine signature** includes:
 
 ---
 
-## Expected Challenges
-
-### 1. Dataset heterogeneity across cancer types
-**Solution:** Batch correction methods, cancer-type specific models
-
-### 2. Class imbalance (TLS regions are rare)
-**Solution:** SMOTE, weighted loss functions, ensemble methods
 
 
 # Tutorials
